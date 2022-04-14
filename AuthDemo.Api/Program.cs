@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Security.Claims;
 using AuthDemo.Api.Conts;
 using AuthDemo.Api.CtmAuthentication;
@@ -28,7 +29,8 @@ builder.Services.AddAuthentication(op =>
 #endregion
 #region 授权
     builder.Services.AddAuthorization(op=>{
-        op.AddPolicy(AuthorizationConts.MYPOLICY,p=>p.RequireClaim(ClaimTypes.NameIdentifier,"6"));
+        // op.AddPolicy(AuthorizationConts.MYPOLICY,p=>p.RequireClaim(ClaimTypes.NameIdentifier,"6"));
+        op.AddPolicy(AuthorizationConts.MYPOLICY, p =>p.RequireAssertion(ass=>ass.User.HasClaim(c=>c.Type==ClaimTypes.NameIdentifier) && ass.User.Claims.First(c=>c.Type.Equals(ClaimTypes.NameIdentifier)).Value == "6"));
     });
 #endregion
 var app = builder.Build();
