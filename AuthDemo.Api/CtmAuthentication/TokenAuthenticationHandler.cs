@@ -35,7 +35,7 @@ namespace AuthDemo.Api.CtmAuthentication
                 ClaimsIdentity claimsIdentity=new("Ctm");
                 claimsIdentity.AddClaims(new List<Claim>{
                     new Claim(ClaimTypes.Name,"Wzz"),
-                    new Claim(ClaimTypes.NameIdentifier,"6")
+                    new Claim(ClaimTypes.NameIdentifier,"1")
                 });
                 var claimsPrincipal =new ClaimsPrincipal(claimsIdentity);
                 return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal,null,_scheme.Name)));

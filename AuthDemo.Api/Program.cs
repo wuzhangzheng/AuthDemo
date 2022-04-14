@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using AuthDemo.Api.Conts;
 using AuthDemo.Api.CtmAuthentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -23,6 +25,11 @@ builder.Services.AddAuthentication(op =>
     op.DefaultChallengeScheme="token";
     op.DefaultForbidScheme="token";
 });
+#endregion
+#region 授权
+    builder.Services.AddAuthorization(op=>{
+        op.AddPolicy(AuthorizationConts.MYPOLICY,p=>p.RequireClaim(ClaimTypes.NameIdentifier,"6"));
+    });
 #endregion
 var app = builder.Build();
 
