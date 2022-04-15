@@ -16,8 +16,6 @@ namespace AuthDemo.Api.CtmAuthentication
         /// </summary>
         /// <param name="scheme">鉴权架构名称</param>
         /// <param name="context">HttpContext</param>
-        /// <returns></returns>
-
         public async Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)
         {
             this._context = context;
@@ -26,7 +24,6 @@ namespace AuthDemo.Api.CtmAuthentication
         /// <summary>
         /// 鉴权
         /// </summary>
-        /// <returns></returns>
         public Task<AuthenticateResult> AuthenticateAsync()
         { 
             string token=_context.Request.Headers["Authorization"];
@@ -46,7 +43,6 @@ namespace AuthDemo.Api.CtmAuthentication
         /// 未登录
         /// </summary>
         /// <param name="properties"></param>
-        /// <returns></returns>
         public async Task ChallengeAsync(AuthenticationProperties? properties)
         {
             _context.Response.Redirect("/login/NoLogin");
@@ -55,12 +51,9 @@ namespace AuthDemo.Api.CtmAuthentication
         /// 没权限访问
         /// </summary>
         /// <param name="properties"></param>
-        /// <returns></returns>
         public async Task ForbidAsync(AuthenticationProperties? properties)
         {
             _context.Response.StatusCode=403;
         }
-
-
     }
 }

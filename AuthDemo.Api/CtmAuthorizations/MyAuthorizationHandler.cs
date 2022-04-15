@@ -20,7 +20,6 @@ namespace AuthDemo.Api.CtmAuthorizatons
         /// </summary>
         /// <param name="context"></param>
         /// <param name="requirement"></param>
-        /// <returns></returns>
         protected override async Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
             MyAuthorizationHandler requirement)
@@ -28,12 +27,10 @@ namespace AuthDemo.Api.CtmAuthorizatons
             if (context.User.HasClaim(c => c.Type == ClaimTypes.NameIdentifier) &&
                 context.User.Claims.First(c => c.Type.Equals(ClaimTypes.NameIdentifier)).Value == userId)
             {
-                // ...
                 context.Succeed(requirement);
             }
             else
             {
-
                 context.Fail();
             }
         }
