@@ -1,5 +1,6 @@
 using System.Net;
 using AuthDemo.Api.Conts;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    [Authorize(AuthorizationConts.MYPOLICY)]
+    // [Authorize(AuthenticationSchemes=$"token,Cookies")]
     [Authorize(AuthorizationConts.MYPOLICY2)]
     public IEnumerable<WeatherForecast> Get()
     {
