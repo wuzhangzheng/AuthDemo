@@ -16,8 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //注册鉴权架构
 #region cookie
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-// .AddCookie(o=>o.LoginPath="/Login/NoLogin");
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(o=>o.LoginPath="/Login/NoLogin");
 #endregion
 #region 自定义token验证
 builder.Services.AddAuthentication(op =>
@@ -40,6 +40,7 @@ builder.Services.AddAuthentication(op =>
 builder.Services.AddAuthorization(op =>
 {
     op.AddPolicy(AuthorizationConts.MYPOLICY, p => p.Requirements.Add(new MyAuthorizationHandler("6")));
+    op.AddPolicy(AuthorizationConts.MYPOLICY2, p => p.Requirements.Add(new MyAuthorizationHandler2("Wzz")));
 });
 #endregion
 var app = builder.Build();

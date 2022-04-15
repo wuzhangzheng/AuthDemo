@@ -23,6 +23,7 @@ public class WeatherForecastController : ControllerBase
 
     [HttpGet(Name = "GetWeatherForecast")]
     [Authorize(AuthorizationConts.MYPOLICY)]
+    [Authorize(AuthorizationConts.MYPOLICY2)]
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
